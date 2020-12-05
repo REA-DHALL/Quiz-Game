@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="keyword" content ="QUIZ GAME">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+	<title> QUIZ GAME</title>
+	<style>
+		body{
+			background-image: url("qimg.png");
+			background-size: cover;
+			overflow: hidden;
+			font-size: 16px;
+			font-family: 'Marcellus SC', serif;
+			font-weight: 400;
+			position: relative;
+		}
+		.custom-box{
+			max-width:400px;
+			background-color:white;
+			margin:10px auto;
+			padding:30px;
+			border-radius: 10px;
+			color:black;
+			animation: fadInRight 1s ease;
+		}
+		@keyframes fadInRight{
+			0%{
+					transform:translateX(40px);
+					opacity: 0;
+				}
+				100% {
+					transform:translateX(0px);
+					opacity: 1;
+				}
+
+		}
+		.custom-box.hide{
+			display:none;
+		}
+
+		.home h2{
+			font-size:18px;
+			color:grey;
+			font-weight: 500;
+			margin-bottom: 15px;
+			line-height: 25px;
+		}
+		.home .btn{
+			margin-top: 20px
+
+		}
+		.btn{
+			padding: 15px 45px;
+			background-color:#009688;
+			color:black;
+			border:none;
+			border-radius: 10px;
+			cursor: pointer;
+			display: inline-block;
+		}
+		
+		.quiz-box .question-number {
+			font-size:15px;
+			color:#009688;
+			font-weight: 600;
+			border-bottom: 1px solid peru;
+			padding-bottom:10px;
+			line-height: 20px;
+		}
+		.quiz-box .question-text{
+			font-size: 20px;
+			color:black;
+			line-height: 26px;
+			font-weight: 400;
+			padding: 10px 0;
+			margin:0;
+		}
+		.quiz-box .option-container{
+
+		}
+		.quiz-box .btn{
+			margin: 10px 0;
+		}
+		.quiz-box .option-container .option{
+			background-color: gray;
+			padding:15px;
+			font-size: 16px;
+			line-height: 22px;
+			color:black;
+			border-radius: 5px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			opacity:0;
+			animation: fadIn 0.3 ease forwards;
+			position: relative;
+			overflow: hidden;
+
+			}
+			.quiz-box .option-container .option.already-answered{
+				pointer-events: none;
+			}
+			@keyframes fadIn{
+				0%{
+					opacity:0;
+				}
+				100% {
+					opacity:1;
+				}
+
+			}
+			.quiz-box .option-container .option.correct::before{
+				content:'';
+				position:absolute;
+				left:0;
+				top:0;
+				height: 100%;
+				width: 100%;
+				background-color: green;
+				z-index: -1;
+				animation: slideInleft .5s ease forwards
+			}
+			@keyframes slideInleft{
+				0%{
+					transform:translateX(-100%);
+				}
+				100% {
+					transform:translateX(0%);
+				}
+
+			}
+			.quiz-box .option-container .option.wrong::before{
+				content:'';
+				position:absolute;
+				left:0;
+				top:0;
+				height: 100%;
+				width: 100%;
+				background-color: red;
+				z-index: -1;
+				animation: slideInleft .5s ease forwards
+			}
+			.quiz-box .option-container .option.wrong{
+				color:#ffff;
+			}
+
+			.quiz-box .option-container .option.correct{
+				color:#ffff;
+			}
+
+			.Result{
+				border-radius: 50%;
+			}
+
+	</style>
+</head>
+<body>
+	<div class="home custom-box ">
+		<h2>Instructions :</h2>
+		<p> Total number of questions: <span class="total-question"></span></p>
+		<button type="button" class="btn" onclick="startQuiz()">Start Quiz</button>
+	</div>
+		 <div class="quiz-box custom-box hide">
+	 	<div class="question-number"> </div>
+	 	<div class="question-text"> </div>
+	 	<div class="option-container"> </div>
+	 	<div class="next-question-btn">
+	 		<button type="button"class="btn" onclick="next()">Next</button>
+	 	</div>
+	 </div>
+	 		<div class="result custom-box hide"><h1 >Total Score:<div class="total-score"></div></h1>
+	 			<button type="button"class="btn" onclick="tryAgainQuiz()"> TRY AGAIN</button>
+	 			<button type="button"class="btn" onclick="goToHome()"> HOME</button>
+
+	 		 </div>
+	 		 <script src="ques.js"></script>
+	         <script src="app.js"></script>
+	</body>
+	</html>
